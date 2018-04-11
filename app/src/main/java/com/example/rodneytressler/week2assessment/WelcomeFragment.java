@@ -11,17 +11,19 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.rodneytressler.week2assessment.MainActivity.REGISTRATION_DATA;
+
 /**
  * Created by rodneytressler on 12/14/17.
  */
 
-public class WelcomeFragment {
-
+public class WelcomeFragment extends Fragment {
     @BindView(R.id.welcome_text)
     protected TextView welcomeText;
 
     @BindView(R.id.instruction_text)
     protected TextView instructionsText;
+    private WelcomeCallback welcomeCallback;
 
     @Nullable
     @Override
@@ -31,5 +33,35 @@ public class WelcomeFragment {
         return view;
     }
 
+    public static WelcomeFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        WelcomeFragment fragment = new WelcomeFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    private void changeData( ) {
+    }
+
+
+
+    public void attachView(WelcomeCallback welcomeCallback) {
+        this.welcomeCallback = welcomeCallback;
+
+    }
+
+    public interface WelcomeCallback {
+        void welcomeTraveler(String hi);
+
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+//        getArguments(REGISTRATION_DATA);
+    }
 
 }
